@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../bases/dynatrace-configuration
+
+patchesStrategicMerge:
+- |-
+  apiVersion: dynatrace.com/v1beta1
+  kind: DynaKube
+  metadata:
+    name: dynakube
+    namespace: dynatrace
+  spec:
+    # Dynatrace apiUrl including the `/api` path at the end.
+    # For SaaS, set `YOUR_ENVIRONMENT_ID` to your environment ID.
+    # For Managed, change the apiUrl address.
+    # For instructions on how to determine the environment ID and how to configure the apiUrl address, see https://www.dynatrace.com/support/help/reference/dynatrace-concepts/environment-id/.
+    apiUrl: https://123456.live.dynatrace.com/api   
